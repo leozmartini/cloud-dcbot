@@ -1,10 +1,10 @@
 const Discord = require("discord.js")
 module.exports =(client, interaction) => {
+    const cliente = interaction.user.id
     if (interaction.isButton()) {
       if (interaction.customId === "ticket_prata") {
-        let nome_canal = `🔖-${interaction.user.id}`;
+        const nome_canal = `🧨${interaction.user.tag}`
         let canal = interaction.guild.channels.cache.find(c => c.name === nome_canal);
-  
         if (canal) {
           interaction.reply({ content: `Olá **${interaction.user.username}**, você já possui um ticket em ${canal}.`, ephemeral: true})
         } else {
@@ -13,8 +13,7 @@ module.exports =(client, interaction) => {
           if (!categoria) categoria = null;
   
           interaction.guild.channels.create({
-  
-            name: 'VIP PRATA',
+            name: nome_canal,
             parent: categoria,
             type: Discord.ChannelType.GuildText,
             permissionOverwrites: [
@@ -39,11 +38,11 @@ module.exports =(client, interaction) => {
             interaction.reply({ content: `Olá **${interaction.user.username}**, seu ticket foi aberto em ${chat}.`, ephemeral: true })
   
             let embedCreate = new Discord.EmbedBuilder()
-            .setColor("Random")
+            .setColor("Green")
             .setDescription(`Olá ${interaction.user}, você abriu o seu ticket.\nAguarde um momento para ser atendido.`);
 
             const embedPay = new Discord.EmbedBuilder()
-            .setColor("green")
+            .setColor("Green")
             .setTitle(`💸PAGAMENTO`)
             .setDescription(
               `Para proceder sua compra, você deve realizar o pagamento (R$ PRICE), aceitamos os seguintes métodos \n
@@ -60,7 +59,7 @@ module.exports =(client, interaction) => {
             let botao_close = new Discord.ActionRowBuilder().addComponents(
               new Discord.ButtonBuilder()
               .setCustomId("close_prata")
-              .setEmoji("❌")
+              .setEmoji("🔒")
               .setStyle(Discord.ButtonStyle.Danger)
             );
   
@@ -74,15 +73,12 @@ module.exports =(client, interaction) => {
 
 
       } else if (interaction.customId === "close_prata") {
-        interaction.reply(`Este ticket será encerrado em 5 segundos.`)
-        try {
-          setTimeout( () => {
-            interaction.channel.delete().catch( e => { return; } )
-          }, 5000)
-        } catch (e) {
-          return;
-        }
-        
+        const canal = interaction.channel
+        canal.permissionOverwrites.edit(cliente, { ViewChannel: false, SendMessages: false }).then( () => {
+          interaction.reply(`Ticket encerrado.`)
+        }).then(() => {
+          setTimeout(() => {canal.send(`@here`)}, 5000);
+        })
         
       }
 
