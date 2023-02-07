@@ -1,7 +1,7 @@
 const Discord = require("discord.js")
 
 module.exports = {
-  name: "bronzeticket",
+  name: "advancedticket",
   description: "Ative o sistema de ticket no servidor.",
   devOnly: true,
   type: Discord.ApplicationCommandType.ChatInput,
@@ -28,13 +28,13 @@ module.exports = {
 
         let emebedTickets = new Discord.EmbedBuilder()
         .setColor("Green")
-        .setAuthor({ name: "VIP BRONZE", iconURL: interaction.guild.iconURL({ dynamic: true}) })
+        .setAuthor({ name: "VIP ADVANCED🔮", iconURL: interaction.guild.iconURL({ dynamic: true}) })
         .setDescription(`> Clique no botão abaixo para adquirir seu VIP!`)
-        // .setThumbnail(``)
+        .setThumbnail(`https://abs.twimg.com/emoji/v2/72x72/1f52e.png`)
 
         let botao = new Discord.ActionRowBuilder().addComponents(
             new Discord.ButtonBuilder()
-            .setCustomId("ticket_bronze")
+            .setCustomId("ticket_advanced")
             .setEmoji("🎫")
             .setStyle(Discord.ButtonStyle.Success)
         );

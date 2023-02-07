@@ -2,8 +2,8 @@ const Discord = require("discord.js");
 module.exports = (client, interaction) => {
   const cliente = interaction.user.id;
   if (interaction.isButton()) {
-    if (interaction.customId === "ticket_prata") {
-      const nome_canal = `🥈${interaction.user.tag}`;
+    if (interaction.customId === "ticket_platina") {
+      const nome_canal = `💠${interaction.user.tag}`;
       let canal = interaction.guild.channels.cache.find(
         (c) => c.name === nome_canal
       );
@@ -67,7 +67,7 @@ module.exports = (client, interaction) => {
 
             let botao_close = new Discord.ActionRowBuilder().addComponents(
               new Discord.ButtonBuilder()
-                .setCustomId("close_prata")
+                .setCustomId("close_platina")
                 .setEmoji("🔒")
                 .setStyle(Discord.ButtonStyle.Danger)
             );
@@ -81,7 +81,7 @@ module.exports = (client, interaction) => {
             chat.send({ content: "@here", embeds: [embedPay] });
           });
       }
-    } else if (interaction.customId === "close_prata") {
+    } else if (interaction.customId === "close_platina") {
       const canal = interaction.channel;
       canal.permissionOverwrites
         .edit(cliente, { ViewChannel: false, SendMessages: false })

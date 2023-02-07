@@ -18,20 +18,26 @@ module.exports = {
   devOnly: false,
   options: [
     {
-      name: "titulo",
+      name: "canal",
       description: "canal que deseja enviar",
+      type: ApplicationCommandOptionType.Channel,
+      required: true,
+    },
+    {
+      name: "titulo",
+      description: "Título da embed",
       type: ApplicationCommandOptionType.String,
       required: true,
     },
     {
       name: "descricao",
-      description: "mensagem que quer enviar (precisa sem em json)",
+      description: "Descreição da embed",
       type: ApplicationCommandOptionType.String,
       required: true,
     },
     {
       name: "imagem",
-      description: "mensagem que quer enviar (precisa sem em json)",
+      description: "Thumbnail da embed (link)",
       type: ApplicationCommandOptionType.String,
       required: false,
     },
@@ -44,7 +50,7 @@ module.exports = {
       return;
     }
 
-    const channel = client.channels.cache.get('1071177291129954384') // Canal avisos do code community.
+    const channel = interaction.options.getChannel("canal").value;
     const title = interaction.options.get("titulo").value;
     const desc = interaction.options.get("descricao").value;
     const img = interaction.options.get("imagem")?.value || "https://www.shuttrstock.com/image-vector/vector-line-icon-img-260nw-2050481222.jpg"; // img vazia
