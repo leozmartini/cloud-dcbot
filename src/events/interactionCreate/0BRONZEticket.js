@@ -2,7 +2,7 @@ const Discord = require("discord.js");
 module.exports = (client, interaction) => {
   const cliente = interaction.user.id;
   if (interaction.isButton()) {
-    if (interaction.customId === "bronze") {
+    if (interaction.customId === "ticket_bronze") {
       const nome_canal = `🥉${interaction.user.tag}`;
       let canal = interaction.guild.channels.cache.find(
         (c) => c.name === nome_canal

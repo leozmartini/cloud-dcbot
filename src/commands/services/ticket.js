@@ -27,7 +27,7 @@ module.exports = {
         .setDescription(`Olá ${interaction.user}, o sistema foi adicionado em ${canal} com sucesso.`);
 
         let emebedTickets = new Discord.EmbedBuilder()
-        .setColor("Random")
+        .setColor("Red")
         .setAuthor({ name: interaction.guild.name, iconURL: interaction.guild.iconURL({ dynamic: true}) })
         .setDescription(`> Clique no botão abaixo para abrir um ticket!`);
 
