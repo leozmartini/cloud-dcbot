@@ -50,10 +50,11 @@ module.exports = {
       return;
     }
 
-    const channel = interaction.options.getChannel("canal").value;
+    const channel = interaction.options.getChannel("canal")
     const title = interaction.options.get("titulo").value;
     const desc = interaction.options.get("descricao").value;
     const img = interaction.options.get("imagem")?.value || "https://www.shuttrstock.com/image-vector/vector-line-icon-img-260nw-2050481222.jpg"; // img vazia
+    console.log(channel)
 
     const avatarBot = client.user.displayAvatarURL({ dynamic: true });
     const author = interaction.user.tag;

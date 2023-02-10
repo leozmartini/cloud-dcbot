@@ -47,5 +47,5 @@ module.exports = {
     channel.send(msg)
     .then(() => interaction.reply({ content:`✅Mensagem enviada com sucesso em ${channel}`, ephemeral: true} ))
     .catch((error) => interaction.reply({ content:`❌Erro ao enviar mensagem: ${error}`, ephemeral: true} ))
-}
+  }
 }
