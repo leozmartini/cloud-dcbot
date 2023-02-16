@@ -56,5 +56,5 @@ module.exports = (client) => {
       });
       console.log(`Verificação de VIP concluida. ${dataFormatada}`);
     }
-  }, 3600000);
+  }, 3600000); // 1 hora
 };
