@@ -19,12 +19,15 @@ const client = new Client({
     mongoose.set('strictQuery', false);
     await mongoose.connect(process.env.MONGODB_URL, { keepAlive: true })
     console.log('💾✅ Conectado com banco de dados.')
-    // eventHandler(client);
   } catch (error) {
     console.log(`💾❌ Erro ao conectar com banco de dados: ${error}`)
   }
-})()
-  eventHandler(client);
 
-client.login(process.env.TOKEN);
+
+})().then(() => {
+  eventHandler(client)
+  client.login(process.env.TOKEN);
+})
+
+
 
